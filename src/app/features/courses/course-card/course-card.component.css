@@ -1,0 +1,42 @@
+.course-card {
+  padding: .5em 1em;
+  border: .2em solid lightseagreen;
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem .5rem;
+}
+
+.course-data {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 1rem .5rem;
+  width: fit-content;
+}
+
+.course-info {
+  margin: .2rem;
+  display: flex;
+  align-items: center;
+  line-height: 0.1rem;
+  height: fit-content;
+}
+
+.course-info p {
+  margin-right: .5rem;
+  font-weight: bold;
+}
+
+.course-actions {
+  display: flex;
+  justify-content: end;
+}
+
+.author-list {
+  line-height: normal;
+  line-break: normal;
+}
+
+.course-title-and-desc {
+  max-width: 50%;
+}
