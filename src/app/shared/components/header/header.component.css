@@ -1,0 +1,35 @@
+#courses-header {
+  width: 10em;
+  text-align: right;
+  padding: .5em 1.5em .5em 1em;
+  background-color: black;
+  color: white;
+  position: relative;
+  z-index: 2;
+  left: -4.5em;
+  height: 1em;
+  vertical-align: middle;
+  font-size: medium;
+}
+
+#logo {
+  z-index: 3;
+  width: 4em;
+  height: 4em;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  padding: .5em 2em;
+  z-index: 1;
+  width: auto;
+  border: .1em solid red;
+}
+
+#additional-content {
+  display: flex;
+  flex-grow: 1;
+  justify-content: end;
+}
+
