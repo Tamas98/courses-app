@@ -1,0 +1,40 @@
+#text-button {
+  border: .2rem solid darkorchid;
+  background-color: transparent;
+  padding: .5rem 4rem;
+  font-weight: bold;
+  margin: 1rem;
+  font-size: 1.2rem;
+}
+
+
+#icon-button {
+  border: .2rem solid darkorchid;
+  background-color: transparent;
+  padding: .5rem 1rem;
+  font-weight: bold;
+  margin: 1rem;
+  font-size: 1.2rem;
+}
+
+#icon-button:hover, #text-button:hover {
+  background-color: darkorchid;
+  color: white;
+  font-size: 1.3rem;
+  transition: 0.3s all;
+}
+
+#icon-button:focus, #text-button:focus {
+  background-color: rebeccapurple;
+  color: white;
+  font-size: 1.4rem;
+  transition: 0.3s all;
+}
+
+#icon-button:active, #text-button:active {
+  background-color: blueviolet;
+  color: white;
+  font-size: 1.5rem;
+  transition: 0.3s all;
+  border: .2rem solid blueviolet;
+}
