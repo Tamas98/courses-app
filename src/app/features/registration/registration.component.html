@@ -1,1 +1,42 @@
-<p>registration works!</p>
+<div id="registerPage">
+  <h1>Registration</h1>
+  <form (ngSubmit)="onSubmit()" [formGroup]="userFormGroup">
+    <div class="formLine">
+      <label for="name">Name</label>
+      <input id="name" type="text" formControlName="name">
+      <div class="inputError" *ngIf="!userFormGroup.get('name')?.valid && (userFormGroup.get('name')?.touched || userFormGroup.get('name')?.dirty  || submitted)">
+        <div *ngIf="userFormGroup.get('name')?.hasError('required')">
+          Name is required.
+        </div>
+        <div *ngIf="userFormGroup.get('name')?.hasError('minlength')">
+          Name is too short
+        </div>
+      </div>
+    </div>
+    <div class="formLine">
+      <label for="email">Email</label>
+      <input id="email" type="text" formControlName="email" appValidEmail>
+      <div class="inputError" *ngIf="!userFormGroup.get('email')?.valid && (userFormGroup.get('email')?.touched || userFormGroup.get('email')?.dirty  || submitted)">
+        <div *ngIf="userFormGroup.get('email')?.hasError('required')">
+          Email is required.
+        </div>
+        <div *ngIf="userFormGroup.get('email')?.hasError('email')">
+          Email is invalid.
+        </div>
+      </div>
+    </div>
+
+    <div class="formLine">
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password">
+      <div class="inputError" *ngIf="!userFormGroup.get('password')?.valid && (userFormGroup.get('password')?.touched || userFormGroup.get('password')?.dirty  || submitted)">
+        <div *ngIf="userFormGroup.get('password')?.hasError('required')">
+          Password is required.
+        </div>
+      </div>
+    </div>
+
+    <app-button (caButtonClickEvent)="onSubmit" text="Register"></app-button>
+    <div>If you have an account, you can Login</div>
+  </form>
+</div>

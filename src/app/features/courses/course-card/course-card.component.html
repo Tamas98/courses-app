@@ -6,7 +6,7 @@
   <div class="course-data">
     <div class="course-info"><p>Authors:</p> <div class="author-list">{{ course.authors | authorList }}</div> </div>
    <div class="course-info"><p>Duration:</p> {{ course.duration | courseTime }} hours </div>
-   <div class="course-info"><p>Created:</p> {{ course.created | date:"dd.MM.YYYY" }} </div>
+   <div class="course-info"><p>Created:</p> {{ course.created | creationDate }} </div>
    <div class="course-actions">
     <ng-content></ng-content>
     </div>
