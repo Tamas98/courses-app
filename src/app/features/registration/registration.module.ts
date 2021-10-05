@@ -4,8 +4,6 @@ import { RegistrationComponent } from './registration.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-
-
 @NgModule({
   declarations: [
     RegistrationComponent

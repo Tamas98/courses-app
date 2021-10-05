@@ -22,5 +22,4 @@ export class SearchComponent implements OnInit {
     console.log(this.searchBar.value);
     this.onSearch.emit(this.searchBar.value);
   }
-
 }
