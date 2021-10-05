@@ -4,6 +4,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CourseTimePipe } from './pipes/course-time.pipe';
 import { AuthorListPipe } from './pipes/author-list.pipe';
 import { InfoComponent, SearchComponent, ButtonComponent, HeaderComponent } from './components/index';
+import { ValidEmailDirective } from './directives/valid-email.directive';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CreationDatePipe } from './pipes/creation-date.pipe';
 
 const COMPONENTS =  [
   InfoComponent,
@@ -15,9 +18,10 @@ const COMPONENTS =  [
 @NgModule({
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule
   ],
-  declarations: [COMPONENTS, CourseTimePipe, AuthorListPipe],
-  exports: [COMPONENTS, CourseTimePipe, AuthorListPipe]
+  declarations: [COMPONENTS, CourseTimePipe, AuthorListPipe, ValidEmailDirective, CreationDatePipe],
+  exports: [COMPONENTS, CourseTimePipe, AuthorListPipe, ValidEmailDirective, CreationDatePipe]
 })
 export class SharedModule {}

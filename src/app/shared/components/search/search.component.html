@@ -1,1 +1,4 @@
-<p>search works!</p>
+<div id="searchBar">
+  <input id="searchBar" type="text" [placeholder]="placeHolder"[formControl]="searchBar">
+  <app-button (caButtonClickEvent)="onSearch" text="Search"></app-button>
+</div>
