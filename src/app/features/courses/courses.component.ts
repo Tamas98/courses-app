@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CoursesStoreService } from 'src/app/services/courses-services/courses-store.service';
 import { COURSES } from 'src/assets/mock';
 
 @Component({
@@ -8,9 +9,11 @@ import { COURSES } from 'src/assets/mock';
 })
 export class CoursesComponent implements OnInit {
 
-  courses = COURSES;
+  courses: any[];
 
-  constructor() { }
+  constructor(private courseStore: CoursesStoreService) {
+    this.courses = courseStore.getAll();
+  }
 
   ngOnInit(): void {
   }

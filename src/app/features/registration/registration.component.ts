@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { ValidEmailDirective } from 'src/app/shared/directives/valid-email.directive';
 
 @Component({
@@ -17,12 +19,17 @@ export class RegistrationComponent implements OnInit {
     password: new FormControl('', [Validators.required])
   })
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(): void {
     this.submitted = true;
+    this.auth.register({
+      name: this.userFormGroup.get('name')?.value,
+      email: this.userFormGroup.get('email')?.value,
+      password: this.userFormGroup.get('password')?.value
+    })
   }
 }

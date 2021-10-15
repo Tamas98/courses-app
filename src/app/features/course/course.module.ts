@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CourseComponent } from './course.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
+import { routing } from './course.routing';
+import { CourseFormComponent } from './course-form/course-form.component';
 
 @NgModule({
   declarations: [
-    CourseComponent,
+    CourseFormComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    routing
   ],
-  exports: [CourseComponent]
 })
 export class CourseModule { }
