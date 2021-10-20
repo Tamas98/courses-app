@@ -9,11 +9,11 @@ export class CoursesService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get<CourseResponse[]>('http://localhost:3000/api/courses/all');
+    return this.http.get<CourseResponse[]>('http://localhost:3000/courses/all');
   }
 
   getCourse(id: string) {
-    return this.http.get<CourseResponse>('http://localhost:3000/api/courses/' + id);
+    return this.http.get<CourseResponse>('http://localhost:3000/courses/' + id);
   }
 
   createCourse(course: Course) {
@@ -26,7 +26,7 @@ export class CoursesService {
   }
 
   deleteCourse(id: string) {
-    return this.http.delete('http://localhost:3000/courses/' + id)
+    return this.http.delete('http://localhost:3000/courses/' + id);
   }
 }
 

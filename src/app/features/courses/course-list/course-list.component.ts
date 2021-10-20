@@ -1,5 +1,8 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { faEdit, faTrash, IconDefinition, IconName } from '@fortawesome/free-solid-svg-icons';
+import { CoursesStoreService } from 'src/app/services/courses-store.service';
+import { UserStoreService } from 'src/app/user/services/user-store.service';
 
 @Component({
   selector: 'app-course-list',
@@ -16,22 +19,31 @@ export class CourseListComponent implements OnInit {
 
   removeIcon: IconDefinition = faTrash;
   editIcon: IconDefinition = faEdit;
+  disabled: boolean = false;
 
-  constructor() { }
+  constructor(private courseStore: CoursesStoreService, private userService: UserStoreService, private router: Router) {
+
+   }
 
   ngOnInit(): void {
+    this.userService.getUser();
+    this.userService.isAdmin$.subscribe(
+      (isAdmin: boolean) => {
+        this.disabled = isAdmin
+      }
+    )
   }
 
-  editClicked(id: number) {
-    this.editClickedEvent.emit(id);
+  editClicked(id: string) {
+    this.router.navigate(['courses','edit',id])
   }
 
-  removeClicked(id: number) {
-    this.removeClickedEvent.emit(id);
+  removeClicked(id: string) {
+    this.courseStore.deleteCourse(id);
   }
 
-  showClicked(id: number) {
-    this.showClickedEvent.emit(id);
+  showClicked(id: string) {
+    this.router.navigate(['courses',id])
   }
 
 }

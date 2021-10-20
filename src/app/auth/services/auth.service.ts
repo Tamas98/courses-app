@@ -10,33 +10,47 @@ import { SessionStorageService } from './session-storage.service';
 })
 export class AuthService {
 
-  private isLoading$$!: BehaviorSubject<boolean>;
+  private isLoading$$ = new BehaviorSubject<boolean>(false);
   public isLoading$: Observable<boolean> = this.isLoading$$.asObservable();
 
   constructor(private router: Router,private http: HttpClient, private storage: SessionStorageService) { }
 
   login(user: User): void {
     this.isLoading$$.next(true);
-    this.http.post('http://localhost:3000/api/login', user).pipe(
-      tap((response: any) => this.storage.setToken('token', response.result)),
+    this.http.post('http://localhost:3000/login', user).pipe(
       finalize(() => this.isLoading$$.next(false))
-    );
+    ).subscribe(
+      (response: any) => {
+        if(response.successful) {
+          this.storage.setToken('token', response.result)
+          this.router.navigate(['/courses'])
+        }
+      });
   }
 
   logout(): void {
     this.isLoading$$.next(true);
-    this.http.post('http://localhost:3000/api/login', this.storage.getToken('authToken')).pipe(
+    this.http.delete('http://localhost:3000/logout', {headers: {Authorization: this.storage.getToken('token')}}).pipe(
       tap((response: any) => this.storage.deleteToken('token')),
       finalize(() => this.isLoading$$.next(false))
-    );
+    ).subscribe(
+      (response: any) => {
+          this.storage.deleteToken('token')
+          this.router.navigate(['/login'])
+      });
   }
 
   register(user: User): void {
     this.isLoading$$.next(true);
-    this.http.post('http://localhost:3000/api/register', user).pipe(
-      tap((response: any) => this.router.navigate(['/login'])),
+    this.http.post('http://localhost:3000/register', user).pipe(
+      tap((response: any) => console.log(user,response)),
       finalize(() => this.isLoading$$.next(false))
-    );
+    ).subscribe(
+      (response: any) => {
+        if(response.successful) {
+          this.router.navigate(['/login'])
+        }
+      });
   }
 }
 

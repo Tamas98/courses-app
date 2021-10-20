@@ -9,9 +9,10 @@ import { IconDefinition, IconName } from '@fortawesome/fontawesome-svg-core';
 })
 export class ButtonComponent implements OnInit {
 
+  @Input() disabled: boolean = false;
   @Input() text?: string;
   @Input() iconName?: IconDefinition;
-  @Output() caButtonClickEvent: EventEmitter<void> = new EventEmitter<void>();
+  @Output() caButtonClickEvent = new EventEmitter();
 
   constructor() {
   }

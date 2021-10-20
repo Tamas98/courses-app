@@ -7,6 +7,7 @@ import { RegistrationModule } from './features/registration/registration.module'
 import { SharedModule } from './shared/shared.module';
 import { routing } from './app.routing';
 import { TokenInterceptor } from './auth/interceptors/token.interceptor';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -18,14 +19,16 @@ import { TokenInterceptor } from './auth/interceptors/token.interceptor';
     SharedModule,
     RegistrationModule,
     CourseModule,
-    routing
+    routing,
+    AuthModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    //{provide: 'Window'}
   ],
   bootstrap: [AppComponent]
 })

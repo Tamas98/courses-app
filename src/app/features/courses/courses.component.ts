@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CoursesStoreService } from 'src/app/services/courses-services/courses-store.service';
+import { CoursesStoreService } from 'src/app/services/courses-store.service';
+import { Course } from 'src/app/services/courses.service';
 import { COURSES } from 'src/assets/mock';
 
 @Component({
@@ -9,13 +10,18 @@ import { COURSES } from 'src/assets/mock';
 })
 export class CoursesComponent implements OnInit {
 
-  courses: any[];
+  courses: Course[] = [];
 
   constructor(private courseStore: CoursesStoreService) {
-    this.courses = courseStore.getAll();
   }
 
   ngOnInit(): void {
+    this.courseStore.getAll().subscribe();
+    this.courseStore.courses$.subscribe(
+      (courses: Course[]) =>  {
+        this.courses = courses
+      }
+    );
   }
 
 }

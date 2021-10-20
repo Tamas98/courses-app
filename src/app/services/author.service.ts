@@ -9,11 +9,11 @@ export class AuthorService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get<AuthorResponse[]>('http://localhost:3000/api/authors/all')
+    return this.http.get<AuthorResponse[]>('http://localhost:3000/authors/all')
   }
 
   getAuthor(id: string) {
-    return this.http.get<AuthorResponse[]>('http://localhost:3000/api/authors/'+id)
+    return this.http.get<AuthorResponse[]>('http://localhost:3000/authors/'+id)
   }
 
   addAuthor(author: Author) {

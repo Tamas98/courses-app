@@ -19,7 +19,7 @@ export class ValidEmailDirective implements Validator{
     if(control.value === null) {
       return null;
     }
-    if(control.value.match('[a-z]*[0-9]*[a-z]*[0-9]*@(gmail|epam|expediagroup).(com|hu)')){
+    if(control.value.match('[a-z]*[0-9]*[a-z]*[0-9]*@(gmail|epam|expediagroup|email).(com|hu)')){
       return null;
     } else {
       return {email: "Invalid email"};

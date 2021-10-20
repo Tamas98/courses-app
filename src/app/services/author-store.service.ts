@@ -8,8 +8,8 @@ import { Author, AuthorService } from './author.service';
 })
 export class AuthorStoreService implements OnInit {
 
-  private isLoading$$!: BehaviorSubject<boolean>;
-  private authors$$!: BehaviorSubject<Author[]>;
+  private isLoading$$ = new BehaviorSubject<boolean>(false);
+  private authors$$ = new BehaviorSubject<Author[]>([]);
 
   public isLoading$: Observable<boolean> = this.isLoading$$.asObservable();
   public authors$: Observable<Author[]> = this.authors$$.asObservable();
@@ -39,6 +39,6 @@ export class AuthorStoreService implements OnInit {
     this.service.addAuthor(author).pipe(
       switchMap(this.getAll),
       finalize(() => this.isLoading$$.next(false))
-    );
+    ).subscribe();
   }
 }

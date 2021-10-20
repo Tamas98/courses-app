@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { UserPriv, UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserStoreService {
 
-  isAdmin$$!: BehaviorSubject<boolean>;
+  isAdmin$$ = new BehaviorSubject<boolean>(false);
   isAdmin$: Observable<boolean> = this.isAdmin$$.asObservable();
 
-  constructor() { }
+  constructor(private service: UserService) { }
 
   getUser() {
-
+    this.service.getUser().subscribe(
+      (userPriv: UserPriv) => this.isAdmin$$.next(userPriv.isAdmin)
+    );
   }
 }
