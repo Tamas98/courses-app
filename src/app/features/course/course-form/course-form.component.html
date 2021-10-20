@@ -1,0 +1,51 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="courseFormGroup">
+  <div class="formLine">
+    <label for="title">Title</label>
+    <input id="title" type="text" formControlName="title">
+    <div class="inputError" *ngIf="!courseFormGroup.get('title')?.valid && (courseFormGroup.get('title')?.touched || courseFormGroup.get('title')?.dirty  || submitted)">
+      <div *ngIf="courseFormGroup.get('title')?.hasError('required')">
+        Title is required.
+      </div>
+    </div>
+    <app-button (caButtonClickEvent)="onSubmit" [text]="buttonText"></app-button>
+  </div>
+
+  <div class="formLine">
+    <label for="description">Description</label>
+    <textarea id="description" formControlName="description"></textarea>
+    <div class="inputError" *ngIf="!courseFormGroup.get('description')?.valid && (courseFormGroup.get('description')?.touched || courseFormGroup.get('description')?.dirty  || submitted)">
+      <div *ngIf="courseFormGroup.get('description')?.hasError('required')">
+        Description is required.
+      </div>
+    </div>
+  </div>
+
+  <div class="formLine authorLine" formGroupName="newAuthor">
+    <label for="name">Author name</label>
+    <input id="name" type="text" formControlName="name">
+    <div>
+      <app-button (caButtonClickEvent)="addAuthor(courseFormGroup.get(['newAuthor','name'])!.value)" text="Add author"></app-button>
+    </div>
+    <div id="authorList">
+      <h3>Author list</h3>
+      <div class="nameLine" formArrayName="authors" *ngFor="let author of authorList; let i = index">
+          {{ author.name }}
+          <app-button (caButtonClickEvent)="removeAuthor(i)" text="Remove author"></app-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="formLine">
+    <label for="duration">Duration</label>
+    <input id="duration" type="text-area" formControlName="duration">
+    <div class="inputError" *ngIf="!courseFormGroup.get('duration')?.valid && (courseFormGroup.get('duration')?.touched || courseFormGroup.get('duration')?.dirty  || submitted)">
+      <div *ngIf="courseFormGroup.get('duration')?.hasError('required')">
+        Duration is required.
+      </div>
+      <div *ngIf="courseFormGroup.get('duration')?.hasError('min')">
+        Duration should be greater then 0.
+      </div>
+    </div>
+    <div>Duration: {{ courseFormGroup.get('duration')!.value | courseTime }}</div>
+  </div>
+</form>

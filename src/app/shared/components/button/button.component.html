@@ -1,4 +1,4 @@
-<button (click)="ca_button_onClick()" id="text-button" *ngIf="text"> {{ text }} </button>
-<button (click)="ca_button_onClick()" id="icon-button" *ngIf="iconName">
+<button (click)="ca_button_onClick()" [disabled]="disabled" id="text-button" *ngIf="text"> {{ text }} </button>
+<button (click)="ca_button_onClick()" [disabled]="disabled" id="icon-button" *ngIf="iconName">
   <fa-icon [icon]="iconName"></fa-icon>
 </button>

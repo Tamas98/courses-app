@@ -1,5 +1,5 @@
 <app-course-card *ngFor="let course of courses" [course]="course">
   <app-button (caButtonClickEvent)="showClicked(course.id)" text="Show course"></app-button>
-  <app-button (caButtonClickEvent)="editClicked(course.id)" *ngIf="editable" [iconName]="editIcon"></app-button>
-  <app-button (caButtonClickEvent)="removeClicked(course.id)" *ngIf="editable" [iconName]="removeIcon"></app-button>
+  <app-button (caButtonClickEvent)="editClicked(course.id)" *ngIf="editable" [disabled]="disabled" [iconName]="editIcon"></app-button>
+  <app-button (caButtonClickEvent)="removeClicked(course.id)" *ngIf="editable" [iconName]="removeIcon" [disabled]="disabled"></app-button>
 </app-course-card>

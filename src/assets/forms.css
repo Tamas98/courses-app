@@ -1,0 +1,38 @@
+.inputError {
+  padding-top: .5rem;
+  color:red;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: normal;
+}
+
+#loginPage, #registerPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#loginPage form, #registerPage form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+}
+
+.formLine {
+  margin: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 100%;
+}
+
+.formLine label {
+  margin-right: .5rem;
+  display: block;
+  clear: both;
+}
+
+.formLine input {
+  padding: .5rem;
+  width: 90%;
+}
