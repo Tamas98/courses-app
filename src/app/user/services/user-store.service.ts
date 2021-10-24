@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { UserPriv, UserService } from './user.service';
+import { User, UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class UserStoreService {
 
   getUser() {
     this.service.getUser().subscribe(
-      (userPriv: UserPriv) => this.isAdmin$$.next(userPriv.isAdmin)
+      (user: User) => this.isAdmin$$.next(user.isAdmin)
     );
   }
 }

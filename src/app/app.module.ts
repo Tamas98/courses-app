@@ -8,6 +8,11 @@ import { SharedModule } from './shared/shared.module';
 import { routing } from './app.routing';
 import { TokenInterceptor } from './auth/interceptors/token.interceptor';
 import { AuthModule } from './auth/auth.module';
+import { StoreModule } from '@ngrx/store';
+import { effects, reducers } from './store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,15 @@ import { AuthModule } from './auth/auth.module';
     RegistrationModule,
     CourseModule,
     routing,
-    AuthModule
+    AuthModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot(effects),
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+      autoPause: true,
+    })
   ],
   providers: [
     {
