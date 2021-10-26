@@ -13,7 +13,6 @@ export class CoursesEffects {
       switchMap(() =>
         this.courses.getAll().pipe(
           map((courses: CourseResponse) => {
-            debugger
             return requestAllCoursesSuccess({courses:courses.result})
           }),
           catchError((error) => of(requestAllCoursesFail))

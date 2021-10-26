@@ -17,9 +17,7 @@ export class CoursesStateFacade {
   public course$: Observable<Course | undefined> = this.store.pipe(select((state: State) => state.courses.course));
   public errorMsg$: Observable<string> = this.store.pipe(select((state: State) => state.courses.errorMsg));
 
-  constructor(private store: Store<State>) {
-    debugger
-  }
+  constructor(private store: Store<State>) {}
 
   getAllCourses() {
     this.store.dispatch(requestAllCourses());
