@@ -23,8 +23,10 @@ export interface CoursesState {
 
 const privateCoursesReducer = createReducer(initialState,
     on(requestAllCoursesSuccess, (state,payload) => {
-      state.allCourses = payload.courses
-      return state;
+      return {
+        ...state,
+        allCourses: payload.courses
+      };
     }),
     on(requestSingleCourseSuccess, (state,payload) => {
       state.course = payload.course
@@ -33,4 +35,4 @@ const privateCoursesReducer = createReducer(initialState,
   )
 
 export const coursesReducer = (state:
-  CoursesState, action: Action): CoursesState => privateCoursesReducer(state, action);
+  CoursesState | undefined, action: Action): CoursesState => privateCoursesReducer(state, action);

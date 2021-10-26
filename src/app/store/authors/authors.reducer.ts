@@ -26,4 +26,4 @@ const privateAuthorReducer = createReducer(initialState,
   )
 
 export const authorReducer = (state:
-  AuthorState, action: Action): AuthorState => privateAuthorReducer(state, action);
+  AuthorState | undefined, action: Action): AuthorState => privateAuthorReducer(state, action);

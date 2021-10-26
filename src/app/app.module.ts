@@ -28,7 +28,6 @@ import { environment } from 'src/environments/environment';
     AuthModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effects),
-    StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

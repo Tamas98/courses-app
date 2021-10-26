@@ -24,5 +24,5 @@ const privateAuthReducer = createReducer(initialState,
     on(requestLogoutFail, state => ({ isAuthorized: state.isAuthorized, token: state.token , errorMsg: state.errorMsg })),
   )
 
-export const autReducer = (state:
-  AuthState, action: Action): AuthState => privateAuthReducer(state, action);
+export const authReducer = (state:
+  AuthState | undefined, action: Action): AuthState => privateAuthReducer(state, action);

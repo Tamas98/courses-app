@@ -18,4 +18,4 @@ const currentUserReducer = createReducer(initialState,
   )
 
 export const userReducer = (state:
-  UserState, action: Action): UserState => currentUserReducer(state, action);
+  UserState | undefined, action: Action): UserState => currentUserReducer(state, action);

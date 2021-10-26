@@ -4,17 +4,22 @@ import { Observable } from "rxjs";
 import { Course } from "src/app/services/courses.service";
 import { requestAllCourses, requestCreateCourse, requestDeleteCourse, requestEditCourse, requestFilteredCourses, requestSingleCourse } from "./courses.actions";
 import { CoursesState } from "./courses.reducer";
+import { State } from "../index";
 
-@Injectable()
-export class UserStateFacade {
-  public isAllCoursesLoading$: Observable<boolean> = this.store.pipe(select((state: CoursesState) => state.isAllCoursesLoading));
-  public isSingleCoursesLoading$: Observable<boolean> = this.store.pipe(select((state: CoursesState) => state.isSingleCourseLoading));
-  public isSearchState$: Observable<boolean> = this.store.pipe(select((state: CoursesState) => state.isSearchState));
-  public allCourses$: Observable<Course[]> = this.store.pipe(select((state: CoursesState) => state.allCourses));
-  public course$: Observable<Course | undefined> = this.store.pipe(select((state: CoursesState) => state.course));
-  public errorMsg$: Observable<string> = this.store.pipe(select((state: CoursesState) => state.errorMsg));
+@Injectable({
+  providedIn: 'root'
+})
+export class CoursesStateFacade {
+  public isAllCoursesLoading$: Observable<boolean> = this.store.pipe(select((state: State) => state.courses.isAllCoursesLoading));
+  public isSingleCoursesLoading$: Observable<boolean> = this.store.pipe(select((state: State) => state.courses.isSingleCourseLoading));
+  public isSearchState$: Observable<boolean> = this.store.pipe(select((state: State) => state.courses.isSearchState));
+  public allCourses$: Observable<Course[]> = this.store.pipe(select((state: State) => state.courses.allCourses));
+  public course$: Observable<Course | undefined> = this.store.pipe(select((state: State) => state.courses.course));
+  public errorMsg$: Observable<string> = this.store.pipe(select((state: State) => state.courses.errorMsg));
 
-  constructor(private store: Store<CoursesState>) {}
+  constructor(private store: Store<State>) {
+    debugger
+  }
 
   getAllCourses() {
     this.store.dispatch(requestAllCourses());
