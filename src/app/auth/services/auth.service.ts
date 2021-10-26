@@ -15,7 +15,7 @@ export class AuthService {
 
   constructor(private router: Router,private http: HttpClient, private storage: SessionStorageService) { }
 
-  login(user: User): void {
+  login(user: Auth): void {
     this.isLoading$$.next(true);
     this.http.post('http://localhost:3000/login', user).pipe(
       finalize(() => this.isLoading$$.next(false))
@@ -40,7 +40,7 @@ export class AuthService {
       });
   }
 
-  register(user: User): void {
+  register(user: Auth): void {
     this.isLoading$$.next(true);
     this.http.post('http://localhost:3000/register', user).pipe(
       tap((response: any) => console.log(user,response)),
@@ -54,7 +54,7 @@ export class AuthService {
   }
 }
 
-interface User {
+export interface Auth {
   name?: string
   email: string
   password: string

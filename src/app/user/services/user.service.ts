@@ -9,12 +9,12 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getUser(): Observable<UserPriv> {
-      return this.http.get<UserPriv>('http://localhost:3000/users/me');
+  getUser(): Observable<User> {
+      return this.http.get<User>('http://localhost:3000/users/me');
   }
 }
 
-export interface UserPriv {
+export interface User {
   isAdmin: boolean
   name: string
 }

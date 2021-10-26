@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesStoreService } from 'src/app/services/courses-store.service';
 import { Course } from 'src/app/services/courses.service';
+import { CoursesStateFacade } from 'src/app/store/courses/courses.facade';
 import { COURSES } from 'src/assets/mock';
 
 @Component({
@@ -12,16 +13,16 @@ export class CoursesComponent implements OnInit {
 
   courses: Course[] = [];
 
-  constructor(private courseStore: CoursesStoreService) {
-  }
-
-  ngOnInit(): void {
-    this.courseStore.getAll().subscribe();
-    this.courseStore.courses$.subscribe(
+  constructor(private courseStore: CoursesStoreService, private coursesStoreFacade: CoursesStateFacade) {
+    this.coursesStoreFacade.getAllCourses()
+    this.coursesStoreFacade.allCourses$.subscribe(
       (courses: Course[]) =>  {
         this.courses = courses
       }
-    );
+    )
+  }
+
+  ngOnInit(): void {
   }
 
 }
